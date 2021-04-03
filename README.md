@@ -19,6 +19,16 @@ Docker
 
 
 
+
+CREATE TABLE categoria_endereco (
+                categoria_end_id INT AUTO_INCREMENT NOT NULL,
+                categoria_end_nome VARCHAR(30) NOT NULL,
+                PRIMARY KEY (categoria_end_id)
+);
+
+ALTER TABLE categoria_endereco COMMENT 'categoria_endereco';
+
+
 CREATE TABLE estado_sigla (
                 estado_id INT NOT NULL,
                 estado_sigla VARCHAR(2) NOT NULL,
@@ -41,6 +51,10 @@ ALTER TABLE cidade_nome COMMENT 'cidade_nome';
 CREATE TABLE endereco_obra (
                 enderco_id INT AUTO_INCREMENT NOT NULL,
                 estado_id INT NOT NULL,
+                endereco_obra VARCHAR(30) NOT NULL,
+                endereco_numero INT NOT NULL,
+                categoria_end_id INT NOT NULL,
+                endereco_observacao VARCHAR(255) NOT NULL,
                 PRIMARY KEY (enderco_id)
 );
 
@@ -142,7 +156,7 @@ CREATE TABLE controle_saida (
                 saida_id INT AUTO_INCREMENT NOT NULL,
                 saida_data DATE NOT NULL,
                 saida_hora TIME NOT NULL,
-                saida_quilometragem TEXT NOT NULL,
+                saida_quilometragem TEXT(30) NOT NULL,
                 veiculo_id INT NOT NULL,
                 assinatura_saida VARCHAR(30) NOT NULL,
                 PRIMARY KEY (saida_id)
@@ -155,7 +169,7 @@ CREATE TABLE controle_entrada (
                 entrada_id INT AUTO_INCREMENT NOT NULL,
                 entrada_data DATE NOT NULL,
                 entrada_hora TIME NOT NULL,
-                entrada_quilometragem TEXT NOT NULL,
+                entrada_quilometragem TEXT(30) NOT NULL,
                 veiculo_id INT NOT NULL,
                 assinatura_entrada VARCHAR(30) NOT NULL,
                 PRIMARY KEY (entrada_id)
@@ -163,6 +177,12 @@ CREATE TABLE controle_entrada (
 
 ALTER TABLE controle_entrada COMMENT 'controle_entrada';
 
+
+ALTER TABLE endereco_obra ADD CONSTRAINT categoria_endereco_endereco_obra_fk
+FOREIGN KEY (categoria_end_id)
+REFERENCES categoria_endereco (categoria_end_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 
 ALTER TABLE endereco_obra ADD CONSTRAINT estado_sigla_endereco_obra_fk
 FOREIGN KEY (estado_id)
@@ -235,6 +255,5 @@ FOREIGN KEY (veiculo_id, verificacao_id)
 REFERENCES veiculo (veiculo_id, verificacao_id)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
-
 
 ## 
