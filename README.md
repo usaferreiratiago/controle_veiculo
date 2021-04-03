@@ -20,6 +20,7 @@ Docker
 
 
 
+
 CREATE TABLE categoria_endereco (
                 categoria_end_id INT AUTO_INCREMENT NOT NULL,
                 categoria_end_nome VARCHAR(30) NOT NULL,
@@ -63,6 +64,7 @@ ALTER TABLE endereco_obra COMMENT 'endereco_obra';
 
 CREATE TABLE permissao_acesso (
                 permissao_id INT AUTO_INCREMENT NOT NULL,
+                permissao_nome VARCHAR(15) NOT NULL,
                 PRIMARY KEY (permissao_id)
 );
 
@@ -114,6 +116,7 @@ CREATE TABLE veiculo (
                 veiculo_nome VARCHAR(15) NOT NULL,
                 veiculo_placa VARCHAR(15) NOT NULL,
                 categoria_id INT NOT NULL,
+                veiculo_foto_placa LONGBLOB NOT NULL,
                 PRIMARY KEY (veiculo_id, verificacao_id)
 );
 
