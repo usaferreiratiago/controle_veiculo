@@ -261,3 +261,9 @@ ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 ## 
+## Situações de entendimento ##
+
+- Funcionário se deslocou para Obra X, mas depois também foi em Obra Y e Z retornou para Empresa.
+
+- Assinatura Porteiros diferentes, troca de turno 
+
