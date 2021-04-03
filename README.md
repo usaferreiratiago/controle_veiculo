@@ -18,6 +18,35 @@ Docker
 ## Código de Criação em MySQL
 
 
+
+CREATE TABLE estado_sigla (
+                estado_id INT NOT NULL,
+                estado_sigla VARCHAR(2) NOT NULL,
+                PRIMARY KEY (estado_id)
+);
+
+ALTER TABLE estado_sigla COMMENT 'estado_sigla';
+
+
+CREATE TABLE cidade_nome (
+                cidade_id INT AUTO_INCREMENT NOT NULL,
+                estado_id INT NOT NULL,
+                cidade_nome VARCHAR(30) NOT NULL,
+                PRIMARY KEY (cidade_id, estado_id)
+);
+
+ALTER TABLE cidade_nome COMMENT 'cidade_nome';
+
+
+CREATE TABLE endereco_obra (
+                enderco_id INT AUTO_INCREMENT NOT NULL,
+                estado_id INT NOT NULL,
+                PRIMARY KEY (enderco_id)
+);
+
+ALTER TABLE endereco_obra COMMENT 'endereco_obra';
+
+
 CREATE TABLE permissao_acesso (
                 permissao_id INT AUTO_INCREMENT NOT NULL,
                 PRIMARY KEY (permissao_id)
@@ -82,6 +111,7 @@ CREATE TABLE controle_obra (
                 veiculo_id INT NOT NULL,
                 verificacao_id INT NOT NULL,
                 obra_nome VARCHAR(30) NOT NULL,
+                enderco_id INT NOT NULL,
                 PRIMARY KEY (obra_id, veiculo_id, verificacao_id)
 );
 
@@ -133,6 +163,24 @@ CREATE TABLE controle_entrada (
 
 ALTER TABLE controle_entrada COMMENT 'controle_entrada';
 
+
+ALTER TABLE endereco_obra ADD CONSTRAINT estado_sigla_endereco_obra_fk
+FOREIGN KEY (estado_id)
+REFERENCES estado_sigla (estado_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE cidade_nome ADD CONSTRAINT estado_sigla_cidade_nome_fk
+FOREIGN KEY (estado_id)
+REFERENCES estado_sigla (estado_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE controle_obra ADD CONSTRAINT endereco_obra_controle_obra_fk
+FOREIGN KEY (enderco_id)
+REFERENCES endereco_obra (enderco_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 
 ALTER TABLE usuario_acesso ADD CONSTRAINT permissao_acesso_usuario_acesso_fk
 FOREIGN KEY (permissao_id)
