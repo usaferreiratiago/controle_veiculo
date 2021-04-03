@@ -21,6 +21,7 @@ Docker
 
 
 
+
 CREATE TABLE categoria_endereco (
                 categoria_end_id INT AUTO_INCREMENT NOT NULL,
                 categoria_end_nome VARCHAR(30) NOT NULL,
