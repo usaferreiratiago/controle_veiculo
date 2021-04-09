@@ -22,6 +22,7 @@ Docker
 
 
 
+
 CREATE TABLE categoria_endereco (
                 categoria_end_id INT AUTO_INCREMENT NOT NULL,
                 categoria_end_nome VARCHAR(30) NOT NULL,
@@ -215,7 +216,7 @@ ON UPDATE NO ACTION;
 ALTER TABLE veiculo ADD CONSTRAINT categoria_veiculo_veiculo_fk
 FOREIGN KEY (categoria_id)
 REFERENCES categoria_veiculo (categoria_id)
-ON DELETE CASCADE
+ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE veiculo ADD CONSTRAINT verificacao_veiculo_veiculo_fk
@@ -227,39 +228,38 @@ ON UPDATE NO ACTION;
 ALTER TABLE inspecao ADD CONSTRAINT validacao_inspecao_inspecao_fk
 FOREIGN KEY (validacao_id)
 REFERENCES validacao_inspecao (validacao_id)
-ON DELETE CASCADE
+ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE controle_entrada ADD CONSTRAINT veiculo_controle_entrada_fk
 FOREIGN KEY (veiculo_id)
 REFERENCES veiculo (veiculo_id)
-ON DELETE CASCADE
+ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE controle_saida ADD CONSTRAINT veiculo_controle_saida_fk
 FOREIGN KEY (veiculo_id)
 REFERENCES veiculo (veiculo_id)
-ON DELETE CASCADE
+ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE motorista ADD CONSTRAINT veiculo_motorista_fk
 FOREIGN KEY (veiculo_id)
 REFERENCES veiculo (veiculo_id)
-ON DELETE CASCADE
+ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE inspecao ADD CONSTRAINT veiculo_inspecao_fk
 FOREIGN KEY (veiculo_id)
 REFERENCES veiculo (veiculo_id)
-ON DELETE CASCADE
+ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE controle_obra ADD CONSTRAINT veiculo_controle_obra_fk
 FOREIGN KEY (veiculo_id, verificacao_id)
 REFERENCES veiculo (veiculo_id, verificacao_id)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 ## 
 ## Situações de entendimento ##
 
